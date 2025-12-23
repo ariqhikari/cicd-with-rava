@@ -2,6 +2,7 @@ import { v4 as uuid } from "uuid";
 import { ResponseError } from "../error/responseError.js";
 import {
   createUserRepository,
+  deleteUserByIdRepository,
   getListUsersRepository,
 } from "../repositories/userRepository.js";
 
@@ -41,16 +42,12 @@ const getListUsersService = () => {
   return getListUsersRepository();
 };
 
-// const deleteUserByIdService = (userId) => {
-//     if (!userId) {
-//         throw new ResponseError("User id is required");
-//     };
+const deleteUserByIdService = (userId) => {
+  if (!userId) {
+    throw new ResponseError("User id is required");
+  }
 
-//     return deleteUserByIdRepository(userId);
-// };
-
-export {
-  createUserService,
-  getListUsersService,
-  // deleteUserByIdService
+  return deleteUserByIdRepository(userId);
 };
+
+export { createUserService, getListUsersService, deleteUserByIdService };

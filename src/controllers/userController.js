@@ -1,6 +1,6 @@
 import {
   createUserService,
-  //   deleteUserByIdService,
+  deleteUserByIdService,
   getListUsersService,
 } from "../services/userService.js";
 
@@ -31,21 +31,21 @@ const getListUsersController = (req, res, next) => {
   }
 };
 
-// const deleteUserByIdController = (req, res, next) => {
-//   try {
-//     const { userId } = req.params;
-//     const result = deleteUserByIdService(userId);
-//     res.json({
-//       message: "Success Delete User",
-//       data: result,
-//     });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+const deleteUserByIdController = (req, res, next) => {
+  try {
+    const { userId } = req.params;
+    const result = deleteUserByIdService(userId);
+    res.json({
+      message: "Success Delete User",
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 export {
   createUserController,
   getListUsersController,
-  //   deleteUserByIdController,
+  deleteUserByIdController,
 };

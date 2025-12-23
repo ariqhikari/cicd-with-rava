@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach } from "@jest/globals";
 import {
   createUserService,
   getListUsersService,
-  deleteUserByIdService
+  deleteUserByIdService,
 } from "../../src/services/userService.js";
 
 import { database } from "../../src/database/database.js";
@@ -17,7 +17,7 @@ describe("User Service (without mock)", () => {
     it("should create user successfully", () => {
       const result = createUserService({
         name: "Rafi",
-        age: 22
+        age: 22,
       });
 
       expect(result).toHaveProperty("id");
@@ -28,15 +28,13 @@ describe("User Service (without mock)", () => {
     });
 
     it("should throw error if payload invalid", () => {
-      expect(() =>
-        createUserService(null)
-      ).toThrow(ResponseError);
+      expect(() => createUserService(null)).toThrow(ResponseError);
     });
 
     it("should throw error if name missing", () => {
-      expect(() =>
-        createUserService({ age: 22 })
-      ).toThrow("Name and age are required");
+      expect(() => createUserService({ age: 22 })).toThrow(
+        "Name and age are required"
+      );
     });
   });
 
@@ -51,29 +49,27 @@ describe("User Service (without mock)", () => {
     });
   });
 
-//   describe("deleteUserByIdService", () => {
-//     it("should delete user by id", () => {
-//       const user = createUserService({
-//         name: "Rafi",
-//         age: 22
-//       });
+  describe("deleteUserByIdService", () => {
+    it("should delete user by id", () => {
+      const user = createUserService({
+        name: "Rafi",
+        age: 22,
+      });
 
-//       const deleted = deleteUserByIdService(user.id);
+      const deleted = deleteUserByIdService(user.id);
 
-//       expect(deleted.id).toBe(user.id);
-//       expect(database.length).toBe(0);
-//     });
+      expect(deleted.id).toBe(user.id);
+      expect(database.length).toBe(0);
+    });
 
-//     it("should throw error if user not found", () => {
-//       expect(() =>
-//         deleteUserByIdService("random-id")
-//       ).toThrow("User not found");
-//     });
+    it("should throw error if user not found", () => {
+      expect(() => deleteUserByIdService("random-id")).toThrow(
+        "User not found"
+      );
+    });
 
-//     it("should throw error if userId missing", () => {
-//       expect(() =>
-//         deleteUserByIdService()
-//       ).toThrow(ResponseError);
-//     });
-//   });
+    it("should throw error if userId missing", () => {
+      expect(() => deleteUserByIdService()).toThrow(ResponseError);
+    });
+  });
 });
