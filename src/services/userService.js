@@ -1,6 +1,9 @@
 import { v4 as uuid } from "uuid";
 import { ResponseError } from "../error/responseError.js";
-import { createUserRepository, deleteUserByIdRepository, getListUsersRepository } from "../repositories/userRepository.js";
+import {
+  createUserRepository,
+  getListUsersRepository,
+} from "../repositories/userRepository.js";
 
 const createUserService = (user) => {
   if (!user || typeof user !== "object") {
@@ -24,19 +27,18 @@ const createUserService = (user) => {
   if (age <= 0) {
     throw new ResponseError(400, "Age must be greater than 0");
   }
-  const id = uuid()
-  createUserRepository({id, name, age})
+  const id = uuid();
+  createUserRepository({ id, name, age });
 
   return {
     id,
     name,
-    age
+    age,
   };
-
 };
 
 const getListUsersService = () => {
-    return getListUsersRepository();
+  return getListUsersRepository();
 };
 
 // const deleteUserByIdService = (userId) => {
@@ -48,7 +50,7 @@ const getListUsersService = () => {
 // };
 
 export {
-    createUserService,
-    getListUsersService,
-    // deleteUserByIdService
-}
+  createUserService,
+  getListUsersService,
+  // deleteUserByIdService
+};
