@@ -2,7 +2,7 @@ import { database } from "../../src/database/database.js";
 // import { ResponseError } from "../../src/error/responseError.js";
 import {
   createUserRepository,
-  deleteUserByIdRepository,
+  // deleteUserByIdRepository,
   getListUsersRepository,
 } from "../../src/repositories/userRepository.js";
 
